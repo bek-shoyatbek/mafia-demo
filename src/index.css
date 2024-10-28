@@ -1,0 +1,136 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #6b7280;
+  --background: #111827;
+  --surface: #1f2937;
+  --error: #ef4444;
+  --success: #22c55e;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-900;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+
+  .input {
+    @apply w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 
+           focus:border-blue-500 focus:ring-1 focus:ring-blue-500 
+           placeholder-gray-400;
+  }
+
+  .card {
+    @apply bg-gray-800 rounded-lg shadow-lg p-6;
+  }
+}
+
+/* Game-specific styles */
+.role-card {
+  @apply relative overflow-hidden transition-transform duration-300 transform hover:scale-105;
+}
+
+.role-card::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(45deg, rgba(59,130,246,0.1), rgba(37,99,235,0.2));
+}
+
+.role-card:hover::before {
+  @apply opacity-100;
+}
+
+/* Chat styles */
+.chat-message {
+  @apply px-4 py-2 rounded-lg mb-2 max-w-[80%] break-words;
+}
+
+.chat-message.own {
+  @apply bg-blue-600 ml-auto;
+}
+
+.chat-message.other {
+  @apply bg-gray-700;
+}
+
+/* Vote panel animations */
+.vote-option {
+  @apply transition-all duration-300;
+}
+
+.vote-option.selected {
+  @apply scale-105 ring-2 ring-blue-500;
+}
+
+/* Player list animations */
+.player-card {
+  @apply transition-all duration-300;
+}
+
+.player-card.dead {
+  @apply opacity-50 grayscale;
+}
+
+/* Game phase transitions */
+.phase-transition {
+  @apply transition-opacity duration-500;
+}
+
+.phase-enter {
+  @apply opacity-0;
+}
+
+.phase-enter-active {
+  @apply opacity-100;
+}
+
+.phase-exit {
+  @apply opacity-100;
+}
+
+.phase-exit-active {
+  @apply opacity-0;
+}
